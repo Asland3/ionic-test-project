@@ -1,0 +1,118 @@
+ion-content {
+    --background: #fff;
+
+    .page-container {
+        padding: 20px;
+    }
+
+    .form-container {
+        padding-top: 20px;
+
+        h1 {
+            color: #444;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .input-container {
+            align-items: center;
+            width: 100%;
+
+            ion-item {
+                ion-icon {
+                    color: #666;
+                    margin-top: 35px;
+                }
+
+                ion-label {
+                    color: #666;
+                }
+
+                ion-input {
+                    color: #666;
+                }
+            }
+        }
+
+        ion-button {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+            --box-shadow: none;
+            --background: #2467f6;
+            --border-radius: 10px;
+            --padding-top: 25px;
+            --padding-bottom: 25px;
+        }
+
+        .forgot-password-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            ion-text {
+                color: #2467f6;
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-top: 8px;
+            }
+        }
+    }
+
+    .or-container {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .horizontal-line {
+            background-color: #888;
+            height: 0.3px;
+            opacity: 0.5;
+            flex-grow: 1;
+        }
+
+        .divider {
+            flex-grow: 0;
+            flex-shrink: 0;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+    }
+
+
+    .alternative-container {
+        text-align: center;
+        
+        ion-button {
+            margin-top: 15px;
+            text-transform: capitalize;
+            --box-shadow: none;
+            --background: #ececf5;
+            --color: #666;
+            --border-radius: 10px;
+            --padding-top: 25px;
+            --padding-bottom: 25px;
+            --background-activated: #66666613;
+
+            ion-icon {
+                font-size: 1.7rem;
+            }
+        }
+
+        .register-prompt {
+            color: #666;
+            font-size: 0.95rem;
+            padding-top: 15px;
+
+            .link {
+                color: #2467f6;
+                font-weight: 600;
+            }
+        }
+
+    }
+}

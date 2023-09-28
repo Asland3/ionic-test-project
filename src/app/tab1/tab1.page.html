@@ -1,17 +1,62 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="page-container">
+
+    <ion-img src="../../assets/icon/undraw_login_re_4vu2.svg">
+    </ion-img>
+
+    <div class="form-container">
+
+      <ion-text>
+        <h1>Login</h1>
+      </ion-text>
+
+      <div class="input-container">
+        <ion-item>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" placeholder="Enter email" required="true" clearInput="true"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="input-container">
+        <ion-item>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" placeholder="Enter password" required="true" clearInput="true"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="forgot-password-container">
+        <ion-text>
+          <span>Forgot password?</span>
+        </ion-text>
+      </div>
+
+      <ion-button type="submit" strong="true" expand="block" shape="round">
+        Login
+      </ion-button>
+    </div>
+
+    <div class="or-container">
+      <div class="horizontal-line"></div>
+      <ion-text color="dark" class="divider">
+        <p>OR</p>
+      </ion-text>
+      <div class="horizontal-line"></div>
+    </div>
+
+    <div class="alternative-container">
+      <ion-button expand="block" shape="round" ion-ripple-effect="false">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Login with Google
+      </ion-button>
+
+      <ion-text>
+        <p class="register-prompt">Don't have an account yet?
+          <ion-text class="link"><span>Register now</span></ion-text>
+        </p>
+      </ion-text>
+    </div>
+  </div>
 </ion-content>
