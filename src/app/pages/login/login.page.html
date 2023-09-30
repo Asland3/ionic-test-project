@@ -15,31 +15,27 @@
         <ion-item class="ion-no-padding">
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" placeholder="Enter email" required="true" clearInput="true" formControlName="email" errorText="Invalid email" ngModel="email"></ion-input>
+          <ion-input type="email" placeholder="Enter email" required="true" clearInput="true"
+            formControlName="email"></ion-input>
         </ion-item>
-
-        <!-- <ion-text *ngIf="email.invalid && email.touched" color="danger">
-          <p>Please enter a valid email</p>
-        </ion-text> -->
-
-        <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
-          <span *ngIf="email.errors?.required">Email is required</span>
-          <span *ngIf="email.errors?.email">Email is invalid</span>
+        <div class="error">
+          <span *ngIf="email.errors?.email && email.touched">Invalid email</span>
+          <span *ngIf="email.errors?.required && email.touched">Email is required</span>
         </div>
-
       </div>
 
       <div class="input-container">
         <ion-item class="ion-no-padding">
           <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" placeholder="Enter password" required="true" clearInput="true" formControlName="password"></ion-input>
+          <ion-input type="password" placeholder="Enter password" required="true" clearInput="true"
+            formControlName="password"></ion-input>
         </ion-item>
-
-        <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
-          <span *ngIf="password.errors?.required">Password is required</span>
-          <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
+        <div class="error">
+          <span *ngIf="password.errors?.required && password.touched">Password is required</span>
+          <span *ngIf="password.errors?.minlength && password.touched">Password needs to be 6 characters</span>
         </div>
+
       </div>
 
       <div class="forgot-password-container">

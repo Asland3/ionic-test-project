@@ -30,7 +30,14 @@ ion-content {
                 ion-input {
                     color: #666;
                 }
+            }
 
+            .error {
+                color: #f44336;
+                font-size: 0.8rem;
+                font-weight: 600;
+                padding-left: 41px;
+                padding-top: 5px;
             }
         }
 

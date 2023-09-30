@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.credentials = this.fb.group({
-      email: ['eve.holte@reqres.in', [Validators.required, Validators.email]],
+      email: ['eve.holt@reqres.in', [Validators.required, Validators.email]],
       password: ['cityslicka', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -39,24 +39,28 @@ export class LoginPage implements OnInit {
   async login() {
     const loading = await this.loadingController.create();
     await loading.present();
-
+  
     this.authService.login(this.credentials?.value).subscribe(
       async (res) => {
         await loading.dismiss();
         this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        
       },
       async (res) => {
         await loading.dismiss();
+        const errorMessage = res.error ? res.error.error : 'An error occurred';
+        console.log(res);
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: res.error.error,
-          buttons: ['OK']
+          message: errorMessage,
+          buttons: ['OK'],
         });
-
+  
         await alert.present();
       }
     );
   }
+  
   
 }
 
