@@ -15,7 +15,6 @@ ion-content {
         }
 
         .input-container {
-            align-items: center;
             width: 100%;
 
             ion-item {
@@ -31,6 +30,7 @@ ion-content {
                 ion-input {
                     color: #666;
                 }
+
             }
         }
 
@@ -83,10 +83,9 @@ ion-content {
         }
     }
 
-
     .alternative-container {
         text-align: center;
-        
+
         ion-button {
             margin-top: 15px;
             text-transform: capitalize;
@@ -94,8 +93,8 @@ ion-content {
             --background: #ececf5;
             --color: #666;
             --border-radius: 10px;
-            --padding-top: 25px;
-            --padding-bottom: 25px;
+            --padding-top: 20px;
+            --padding-bottom: 20px;
             --background-activated: #66666613;
 
             ion-icon {
