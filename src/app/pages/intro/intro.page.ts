@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { Plugins } from '@capacitor/core';
-import { INTRO_KEY } from 'src/app/guards/intro.guard';
-const { Storage } = Plugins;
+
 
 @Component({
   selector: 'app-intro',
@@ -12,7 +9,7 @@ const { Storage } = Plugins;
 export class IntroPage implements OnInit {
   
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -21,9 +18,5 @@ export class IntroPage implements OnInit {
     // Logic for going to next slide here
   }
 
-  async start() {
-     await Storage['set']({ key: INTRO_KEY, value: 'true' });
-    this.router.navigateByUrl('/tabs', { replaceUrl: true });
-  }
 
 }

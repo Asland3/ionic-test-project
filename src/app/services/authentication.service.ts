@@ -1,48 +1,49 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Plugins } from '@capacitor/core';
-import { BehaviorSubject, Observable, from, map, switchMap, tap } from 'rxjs';
-
-const { Storage } = Plugins;
-const TOKEN_KEY = 'my-token';
-
+import { Auth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-  isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null!);
+  constructor(private auth: Auth) {}
 
-  token = '';
-
-  constructor(private http: HttpClient) { 
-    this.loadToken();
-  }
-
-  async loadToken() {
-    const token = await Storage['get']({ key: TOKEN_KEY });
-    if (token && token.value) {
-      this.token = token.value;
-      this.isAuthenticated.next(true);
-    } else {
-      this.isAuthenticated.next(false);
+  async register({ email, password }: { email: string; password: string }) {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      return user; // Return the user object when registration is successful
+    } catch (error) {
+      return null;
     }
   }
 
-  login(credentials: { email: string; password: string; }): Observable<any> {
-    return this.http.post(`https://reqres.in/api/login`, credentials).pipe(
-    map((data: any) => data.token),
-    switchMap(token => {
-      return from(Storage.set({ key: TOKEN_KEY, value: token }));
-    }),
-    tap(_ => {
-      this.isAuthenticated.next(true);
-    })
-    );
+  async login({ email, password }: { email: string; password: string }) {
+    try {
+      const user = await signInWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      return user; // Return the user object when login is successful
+    } catch (error) {
+      return null;
+    }
   }
 
-  logout(): Promise<void> {
-    this.isAuthenticated.next(false);
-    return Storage['remove']({ key: TOKEN_KEY });
+  logout() {
+    return signOut(this.auth);
+  }
+
+  async googleLogin() {
+    try {
+      const provider = new GoogleAuthProvider();
+      const user = await signInWithPopup(this.auth, provider);
+      return user;
+    } catch (error) {
+      return null;
+    }
   }
 }

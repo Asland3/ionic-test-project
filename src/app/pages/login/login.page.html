@@ -28,7 +28,7 @@
         <ion-item class="ion-no-padding">
           <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" placeholder="Enter password" required="true" clearInput="true"
+          <ion-input type="password"  placeholder="Enter password" required="true" clearInput="true" 
             formControlName="password"></ion-input>
         </ion-item>
         <div class="error">
@@ -47,6 +47,7 @@
       <ion-button type="submit" strong="true" expand="block" shape="round" [disabled]="!credentials.valid">
         Login
       </ion-button>
+
     </form>
 
     <div class="or-container">
@@ -58,14 +59,14 @@
     </div>
 
     <div class="alternative-container">
-      <ion-button expand="block" shape="round" ion-ripple-effect="false">
+      <ion-button (click)="googleLogin()" expand="block" shape="round" ion-ripple-effect="false">
         <ion-icon slot="start" name="logo-google"></ion-icon>
         Login with Google
       </ion-button>
 
       <ion-text>
         <p class="register-prompt">Don't have an account yet?
-          <ion-text class="link"><span>Register now</span></ion-text>
+          <ion-text class="link"><span (click)="register()">Register now</span></ion-text>
         </p>
       </ion-text>
     </div>

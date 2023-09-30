@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentials: FormGroup | any; 
+  credentials: FormGroup | any;
 
   constructor(
     private fb: FormBuilder,
@@ -18,52 +18,91 @@ export class LoginPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private loadingController: LoadingController
-  ) { }
+  ) {}
 
-  ngOnInit() {
-    this.credentials = this.fb.group({
-      email: ['eve.holt@reqres.in', [Validators.required, Validators.email]],
-      password: ['cityslicka', [Validators.required, Validators.minLength(6)]]
-    });
-  }
-
-
-  get email () {
+  get email() {
     return this.credentials?.get('email');
   }
 
-  get password () {
+  get password() {
     return this.credentials?.get('password');
+  }
+
+  ngOnInit() {
+   this.validators();
+  }
+
+  validators() {
+    this.credentials = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  async googleLogin() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    this.authService.googleLogin().then(
+      async (res: any) => {
+        await loading.dismiss();
+        this.router.navigateByUrl('tabs', { replaceUrl: true });
+      },
+      async (err: any) => {
+        await loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Login failed',
+          message: err.message,
+          buttons: ['OK'],
+        });
+
+        await alert.present();
+      }
+    );
   }
 
   async login() {
     const loading = await this.loadingController.create();
     await loading.present();
-  
-    this.authService.login(this.credentials?.value).subscribe(
-      async (res) => {
+
+    this.authService.login(this.credentials.value).then(
+      async (res: any) => {
         await loading.dismiss();
-        this.router.navigateByUrl('/tabs', { replaceUrl: true });
-        
+        this.router.navigateByUrl('tabs', { replaceUrl: true });
       },
-      async (res) => {
+      async (err: any) => {
         await loading.dismiss();
-        const errorMessage = res.error ? res.error.error : 'An error occurred';
-        console.log(res);
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: errorMessage,
+          message: err.message,
           buttons: ['OK'],
         });
-  
+
         await alert.present();
       }
     );
   }
-  
-  
+
+  async register() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    const user = await this.authService.register(this.credentials.value);
+    await loading.dismiss();
+
+    if (user) {
+      this.router.navigateByUrl('tabs', { replaceUrl: true });
+      console.log(user)
+    } else {
+      console.log(user)
+      const alert = await this.alertController.create({
+        header: 'Registration failed',
+        message: 'User already exists',
+        buttons: ['OK'],
+      });
+
+      await alert.present();
+    }
+  }
+
 }
-
-
-
-
