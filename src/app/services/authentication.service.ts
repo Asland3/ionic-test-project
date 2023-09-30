@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Auth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
+import {
+  Auth,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +22,7 @@ export class AuthenticationService {
         email,
         password
       );
-      return user; // Return the user object when registration is successful
+      return user;
     } catch (error) {
       return null;
     }
@@ -22,12 +30,8 @@ export class AuthenticationService {
 
   async login({ email, password }: { email: string; password: string }) {
     try {
-      const user = await signInWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      return user; // Return the user object when login is successful
+      const user = await signInWithEmailAndPassword(this.auth, email, password);
+      return user;
     } catch (error) {
       return null;
     }
@@ -41,6 +45,15 @@ export class AuthenticationService {
     try {
       const provider = new GoogleAuthProvider();
       const user = await signInWithPopup(this.auth, provider);
+      return user;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async forgotPassword({ email }: { email: string }) {
+    try {
+      const user = await sendPasswordResetEmail(this.auth, email);
       return user;
     } catch (error) {
       return null;

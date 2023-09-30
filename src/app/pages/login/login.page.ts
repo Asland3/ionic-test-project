@@ -61,6 +61,29 @@ export class LoginPage implements OnInit {
     );
   }
 
+  forgotPassword() {
+    this.authService.forgotPassword(this.credentials.value).then(
+      async (res: any) => {
+        const alert = await this.alertController.create({
+          header: 'Reset password link has been sent to your email',
+          message: res,
+          buttons: ['OK'],
+        });
+
+        await alert.present();
+      },
+      async (err: any) => {
+        const alert = await this.alertController.create({
+          header: 'Password reset',
+          message: err,
+          buttons: ['OK'],
+        });
+
+        await alert.present();
+      }
+    );
+  }
+
   async login() {
     const loading = await this.loadingController.create();
     await loading.present();
