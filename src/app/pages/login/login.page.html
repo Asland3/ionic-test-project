@@ -13,7 +13,7 @@
 
       <div class="input-container">
         <ion-item class="ion-no-padding">
-          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
           <ion-label position="floating">Email</ion-label>
           <ion-input type="email" placeholder="Enter email" required="true" clearInput="true"
             formControlName="email"></ion-input>
@@ -39,7 +39,7 @@
       </div>
 
       <div class="forgot-password-container">
-        <ion-text (click)="forgotPassword()">
+        <ion-text routerLink="/login/forgot-password">
           <span>Forgot password?</span>
         </ion-text>
       </div>

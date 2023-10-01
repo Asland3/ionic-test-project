@@ -17,8 +17,12 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private alertController: AlertController,
     private router: Router,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
   ) {}
+
+  ngOnInit() {
+   this.validators();
+  }
 
   get email() {
     return this.credentials?.get('email');
@@ -26,10 +30,6 @@ export class LoginPage implements OnInit {
 
   get password() {
     return this.credentials?.get('password');
-  }
-
-  ngOnInit() {
-   this.validators();
   }
 
   validators() {
@@ -53,29 +53,6 @@ export class LoginPage implements OnInit {
         const alert = await this.alertController.create({
           header: 'Login failed',
           message: err.message,
-          buttons: ['OK'],
-        });
-
-        await alert.present();
-      }
-    );
-  }
-
-  forgotPassword() {
-    this.authService.forgotPassword(this.credentials.value).then(
-      async (res: any) => {
-        const alert = await this.alertController.create({
-          header: 'Reset password link has been sent to your email',
-          message: res,
-          buttons: ['OK'],
-        });
-
-        await alert.present();
-      },
-      async (err: any) => {
-        const alert = await this.alertController.create({
-          header: 'Password reset',
-          message: err,
           buttons: ['OK'],
         });
 
@@ -115,9 +92,7 @@ export class LoginPage implements OnInit {
 
     if (user) {
       this.router.navigateByUrl('tabs', { replaceUrl: true });
-      console.log(user)
     } else {
-      console.log(user)
       const alert = await this.alertController.create({
         header: 'Registration failed',
         message: 'User already exists',

@@ -5,11 +5,17 @@ ion-content {
         padding: 20px;
     }
 
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
     .form-container {
         padding-top: 20px;
 
         h1 {
-            color: #444;
             font-size: 2.5rem;
             font-weight: 600;
         }
@@ -113,6 +119,7 @@ ion-content {
             color: #666;
             font-size: 0.95rem;
             padding-top: 15px;
+            font-weight: 400;
 
             .link {
                 color: #2467f6;
