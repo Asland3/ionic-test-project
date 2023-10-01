@@ -28,14 +28,15 @@
         <ion-item class="ion-no-padding">
           <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password"  placeholder="Enter password" required="true" clearInput="true" 
+          <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" required="true"
             formControlName="password"></ion-input>
+          <ion-icon *ngIf="password.value" name="eye-outline" slot="end"
+            (click)="showPassword = !showPassword"></ion-icon>
         </ion-item>
         <div class="error">
           <span *ngIf="password.errors?.required && password.touched">Password is required</span>
           <span *ngIf="password.errors?.minlength && password.touched">Password needs to be 6 characters</span>
         </div>
-
       </div>
 
       <div class="forgot-password-container">

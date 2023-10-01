@@ -12,6 +12,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginPage implements OnInit {
   credentials: FormGroup | any;
 
+  public showPassword: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
