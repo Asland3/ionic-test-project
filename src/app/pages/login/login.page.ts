@@ -11,7 +11,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginPage implements OnInit {
   credentials: FormGroup | any;
-
   public showPassword: boolean = false;
 
   constructor(
@@ -84,25 +83,4 @@ export class LoginPage implements OnInit {
       }
     );
   }
-
-  async register() {
-    const loading = await this.loadingController.create();
-    await loading.present();
-
-    const user = await this.authService.register(this.credentials.value);
-    await loading.dismiss();
-
-    if (user) {
-      this.router.navigateByUrl('tabs', { replaceUrl: true });
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Registration failed',
-        message: 'User already exists',
-        buttons: ['OK'],
-      });
-
-      await alert.present();
-    }
-  }
-
 }

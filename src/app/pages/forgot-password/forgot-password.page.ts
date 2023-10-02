@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class ForgotPasswordPage implements OnInit {
   credentials: FormGroup | any;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -37,30 +38,36 @@ export class ForgotPasswordPage implements OnInit {
   async forgotPassword() {
     const loading = await this.loadingController.create();
     await loading.present();
-
+  
     this.authService.forgotPassword(this.credentials.value).then(
       async (res: any) => {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Reset password link has been sent to your email',
           message: res,
-          buttons: ['OK'],
+          buttons: [{ text: 'OK', role: 'ok' }],
         });
-
+  
         await alert.present();
-        this.credentials.reset();
-        this.router.navigateByUrl('/login');
+        const result = await alert.onDidDismiss();
+        if (result.role === 'ok') {
+          this.credentials.reset();
+          this.router.navigateByUrl('/login');
+        }
       },
       async (err: any) => {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'An error occurred',
           message: err,
-          buttons: ['OK'],
+          buttons: [{ text: 'OK', role: 'ok' }],
         });
-
+  
         await alert.present();
       }
     );
   }
+  
+  
+  
 }
