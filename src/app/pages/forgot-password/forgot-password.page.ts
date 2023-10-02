@@ -11,7 +11,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class ForgotPasswordPage implements OnInit {
   credentials: FormGroup | any;
-  
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +37,7 @@ export class ForgotPasswordPage implements OnInit {
   async forgotPassword() {
     const loading = await this.loadingController.create();
     await loading.present();
-  
+
     this.authService.forgotPassword(this.credentials.value).then(
       async (res: any) => {
         await loading.dismiss();
@@ -47,7 +46,7 @@ export class ForgotPasswordPage implements OnInit {
           message: res,
           buttons: [{ text: 'OK', role: 'ok' }],
         });
-  
+
         await alert.present();
         const result = await alert.onDidDismiss();
         if (result.role === 'ok') {
@@ -58,16 +57,13 @@ export class ForgotPasswordPage implements OnInit {
       async (err: any) => {
         await loading.dismiss();
         const alert = await this.alertController.create({
-          header: 'An error occurred',
-          message: err,
+          header: 'Reset password failed',
+          message: 'An error occurred',
           buttons: [{ text: 'OK', role: 'ok' }],
         });
-  
+
         await alert.present();
       }
     );
   }
-  
-  
-  
 }

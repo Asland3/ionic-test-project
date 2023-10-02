@@ -66,11 +66,11 @@ export class RegisterPage implements OnInit {
     await loading.dismiss();
 
     if (user) {
-      this.router.navigateByUrl('tabs', { replaceUrl: true });
+      this.router.navigateByUrl('login', { replaceUrl: true });
     } else {
       const alert = await this.alertController.create({
         header: 'Registration failed',
-        message: 'User already exists',
+        message: 'An error occurred',
         buttons: ['OK'],
       });
 

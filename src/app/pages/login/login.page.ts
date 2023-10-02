@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: err.message,
+          message: 'An error occurred',
           buttons: ['OK'],
         });
 
@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: err.message,
+          message: 'An error occurred',
           buttons: ['OK'],
         });
 

@@ -8,6 +8,8 @@ import {
   signInWithPopup,
   signOut,
 } from '@angular/fire/auth';
+import { collection, addDoc } from 'firebase/firestore';
+import { getFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +17,30 @@ import {
 export class AuthenticationService {
   constructor(private auth: Auth) {}
 
-  async register({ email, password }: { email: string; password: string }) {
+  async register({
+    name,
+    email,
+    password,
+  }: {
+    name: string;
+    email: string;
+    password: string;
+  }) {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         this.auth,
         email,
         password
       );
+      const user = userCredential.user;
+      if (user) {
+        const db = getFirestore();
+        await addDoc(collection(db, 'users'), {
+          uid: user.uid,
+          name: name,
+          email: email,
+        });
+      }
       return user;
     } catch (error) {
       return null;
