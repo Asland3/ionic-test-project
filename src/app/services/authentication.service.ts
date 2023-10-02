@@ -42,8 +42,13 @@ export class AuthenticationService {
         });
       }
       return user;
-    } catch (error) {
-      return null;
+    } catch (error: any) {
+      console.log("Error during registration: ", error); // Log the error
+      if (error.code === 'auth/email-already-in-use') {
+        throw new Error('The email address is already in use by another account.');
+      } else {
+        throw new Error('An error occurred during registration. Please try again.');
+      }
     }
   }
 
@@ -52,7 +57,8 @@ export class AuthenticationService {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
       return user;
     } catch (error) {
-      return null;
+      console.log("Error during login: ", error); // Log the error
+      throw new Error('Invalid email or password. Please try again.');
     }
   }
 
@@ -66,16 +72,17 @@ export class AuthenticationService {
       const user = await signInWithPopup(this.auth, provider);
       return user;
     } catch (error) {
-      return null;
+      console.log("Error during Google login: ", error); // Log the error
+      throw new Error('Google login failed. Please try again.');
     }
   }
 
   async forgotPassword({ email }: { email: string }) {
     try {
-      const user = await sendPasswordResetEmail(this.auth, email);
-      return user;
+      await sendPasswordResetEmail(this.auth, email);
     } catch (error) {
-      return null;
+      console.log("Error during password reset: ", error); // Log the error
+      throw new Error('An error occurred while sending the password reset email. Please try again.');
     }
   }
 }

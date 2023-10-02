@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
   async googleLogin() {
     const loading = await this.loadingController.create();
     await loading.present();
-
+  
     this.authService.googleLogin().then(
       async (res: any) => {
         await loading.dismiss();
@@ -53,19 +53,19 @@ export class LoginPage implements OnInit {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: 'An error occurred',
+          message: err.message,
           buttons: ['OK'],
         });
-
+  
         await alert.present();
       }
     );
   }
-
+  
   async login() {
     const loading = await this.loadingController.create();
     await loading.present();
-
+  
     this.authService.login(this.credentials.value).then(
       async (res: any) => {
         await loading.dismiss();
@@ -75,12 +75,12 @@ export class LoginPage implements OnInit {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Login failed',
-          message: 'An error occurred',
+          message: err.message,
           buttons: ['OK'],
         });
-
+  
         await alert.present();
       }
     );
-  }
+  }  
 }

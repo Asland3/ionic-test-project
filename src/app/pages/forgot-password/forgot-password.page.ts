@@ -37,7 +37,7 @@ export class ForgotPasswordPage implements OnInit {
   async forgotPassword() {
     const loading = await this.loadingController.create();
     await loading.present();
-
+  
     this.authService.forgotPassword(this.credentials.value).then(
       async (res: any) => {
         await loading.dismiss();
@@ -46,7 +46,7 @@ export class ForgotPasswordPage implements OnInit {
           message: res,
           buttons: [{ text: 'OK', role: 'ok' }],
         });
-
+  
         await alert.present();
         const result = await alert.onDidDismiss();
         if (result.role === 'ok') {
@@ -58,12 +58,13 @@ export class ForgotPasswordPage implements OnInit {
         await loading.dismiss();
         const alert = await this.alertController.create({
           header: 'Reset password failed',
-          message: 'An error occurred',
+          message: err.message,
           buttons: [{ text: 'OK', role: 'ok' }],
         });
-
+  
         await alert.present();
       }
     );
   }
+  
 }
