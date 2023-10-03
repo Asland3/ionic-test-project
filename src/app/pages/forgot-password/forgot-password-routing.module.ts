@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: ForgotPasswordPage
-  }
+  },
+  {
+    path: 'forgot-password-modal',
+    loadChildren: () => import('../../modals/forgot-password-modal/forgot-password-modal.module').then( m => m.ForgotPasswordModalPageModule)
+
+  },
 ];
 
 @NgModule({
