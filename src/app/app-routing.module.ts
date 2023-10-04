@@ -5,6 +5,8 @@ import {
   redirectLoggedInTo,
   canActivate,
 } from '@angular/fire/auth-guard';
+import { IntroGuard } from './guards/intro.guard';
+
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToTabs = () => redirectLoggedInTo(['tabs']);
@@ -14,7 +16,8 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginPageModule),
-      ...canActivate(redirectLoggedInToTabs)
+      ...canActivate(redirectLoggedInToTabs),
+      canLoad: [IntroGuard]
   },
   {
     path: 'tabs',
@@ -29,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'tabs',
     pathMatch: 'full',
   },
 ];

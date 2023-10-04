@@ -1,5 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { INTRO_KEY } from 'src/app/guards/intro.guard';
 import Swiper from 'swiper';
+import { Storage } from '@capacitor/storage'; // Import Storage here
 
 
 @Component({
@@ -11,8 +14,9 @@ export class IntroPage {
   @ViewChild('swiper')
   swiperRef: ElementRef | undefined; 
   swiper?: Swiper;
+ 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
 
   swiperReady() {
@@ -27,12 +31,9 @@ export class IntroPage {
     this.swiper?.slideNext();
   }
 
-  skip() {
-    // Logic for skipping to the last slide here
-  }
 
-  swiperSlideChanged(e: any) {
-    console.log(e);
+  async start() {
+    await Storage.set({ key: INTRO_KEY, value: 'true' });
+    this.router.navigateByUrl('/', { replaceUrl: true });
   }
-
 }

@@ -3,8 +3,7 @@
 
 <ion-content class="ion-padding">
 
-    <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)"
-        [pagination]="true">
+    <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
         <swiper-slide><ion-img src="../../../assets/icon/undraw_access_account_re_8spm.svg"></ion-img>
 
             <div class="slider-text">
@@ -17,7 +16,7 @@
             </div>
 
             <div class="navigator">
-                <ion-button color="primary" fill="clear" routerLink="/login">SKIP</ion-button>
+                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
                 <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
             </div>
         </swiper-slide>
@@ -34,7 +33,7 @@
             </div>
 
             <div class="navigator">
-                <ion-button color="primary" fill="clear" routerLink="/login">SKIP</ion-button>
+                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
                 <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
             </div>
         </swiper-slide>
@@ -51,7 +50,7 @@
             </div>
 
 
-            <ion-button expand="block" routerLink="/login">GET STARTED</ion-button>
+            <ion-button expand="block" (click)="start()" >GET STARTED</ion-button>
         </swiper-slide>
     </swiper-container>
 </ion-content>
