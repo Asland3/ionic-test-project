@@ -6,8 +6,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -23,8 +22,8 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private alertController: AlertController,
-    private router: Router,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -75,7 +74,7 @@ export class RegisterPage implements OnInit {
       await loading.dismiss();
   
       if (user) {
-        this.router.navigateByUrl('login', { replaceUrl: true });
+        this.navCtrl.navigateBack('login', { replaceUrl: true });
       }
     } catch (error: any) {
       await loading.dismiss();

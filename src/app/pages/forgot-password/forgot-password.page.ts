@@ -5,6 +5,7 @@ import {
   AlertController,
   LoadingController,
   ModalController,
+  NavController,
 } from '@ionic/angular';
 import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
 
@@ -24,7 +25,8 @@ export class ForgotPasswordPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private loadingController: LoadingController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class ForgotPasswordPage implements OnInit {
           cssClass: 'my-modal',
         });
         modal.onDidDismiss().then(() => {
-          this.router.navigateByUrl('/login');
+          this.navCtrl.navigateBack('/login');
         });
         await modal.present();
       },
