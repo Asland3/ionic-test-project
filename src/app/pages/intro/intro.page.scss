@@ -1,0 +1,41 @@
+swiper-container {
+    height: 100%;
+}
+
+swiper-slide {
+    display: block;
+    text-align: center;
+}
+
+ion-img {
+    padding: 15%;
+}
+
+.slider-text {
+    padding-top: 20%;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'SF UI Display Semibold';
+}
+
+p {
+    color: #666;
+    font-weight: 400;
+}
+
+.navigator {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+ion-button {
+    padding-top: 20px;
+    font-weight: 600;
+}
