@@ -30,3 +30,19 @@
     --border-radius: 10px;
     --height: 35%;
 }
+
+p {
+    color: #666;
+    font-weight: 500;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+ion-button {
+    --border-radius: 10px;
+    font-weight: 600;
+}

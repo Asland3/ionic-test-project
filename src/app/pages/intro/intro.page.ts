@@ -12,9 +12,6 @@ export class IntroPage {
   swiperRef: ElementRef | undefined; 
   swiper?: Swiper;
 
-
-
-
   constructor() { }
 
 

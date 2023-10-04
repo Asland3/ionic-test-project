@@ -91,7 +91,9 @@ ion-content {
             color: #666;
             font-size: 0.9rem;
             margin: 0 10px;
-            font-weight: 600;
+            p {
+                font-weight: 600 !important;
+            }
         }
     }
 
