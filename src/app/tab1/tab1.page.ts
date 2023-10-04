@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab1',
@@ -9,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page {
 
-  constructor(private authService: AuthenticationService, private router: Router) {}
+  constructor(private authService: AuthenticationService, private navCtrl: NavController) {}
 
   async logout() {
     await this.authService.logout();
-    this.router.navigateByUrl('/login', { replaceUrl: true });
+    this.navCtrl.navigateBack('/login');
   }
 
 }
