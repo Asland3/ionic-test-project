@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import {
   AlertController,
   LoadingController,
@@ -23,7 +22,6 @@ export class ForgotPasswordPage implements OnInit {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private alertController: AlertController,
-    private router: Router,
     private loadingController: LoadingController,
     private modalCtrl: ModalController,
     private navCtrl: NavController
