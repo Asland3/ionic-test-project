@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { INTRO_KEY } from 'src/app/guards/intro.guard';
 import Swiper from 'swiper';
-import { Storage } from '@capacitor/storage'; // Import Storage here
+import { Preferences } from '@capacitor/preferences';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class IntroPage {
 
 
   async start() {
-    await Storage.set({ key: INTRO_KEY, value: 'true' });
+    await Preferences.set({ key: INTRO_KEY, value: 'true' });
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
 }
