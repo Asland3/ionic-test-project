@@ -1,17 +1,15 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="primary" no-border>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button>
-        <ion-icon  name="menu-outline"></ion-icon>
+        <ion-icon name="menu-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
     <ion-title>
       Event
     </ion-title>
-
     <ion-buttons slot="end">
-      <ion-button slot="end">
+      <ion-button>
         <ion-icon name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -19,29 +17,39 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="banner">
-    <img src="../../assets/icon/output-onlinepngtools.png">
-    <div class="caption ion-padding">
-      Join with <br>
-      upcoming events
+  <div>
+
+
+    <div class="banner">
+      <img src="../../assets/icon/output-onlinepngtools.png">
+      <div class="caption ion-padding">
+        Join with <br>
+        upcoming events
+      </div>
+
+      <div class="search">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-icon slot="start" name="search-outline"></ion-icon>
+          <ion-input placeholder="Search events"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button slot="end">
+              <ion-icon name="filter-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </div>
     </div>
 
-    <div class="search">
-      <ion-item lines="none" class="ion-no-padding">
-        <ion-icon slot="start" name="search-outline"></ion-icon>
-        <ion-input placeholder="Search events"></ion-input>
-        <ion-buttons color="none">
-          <ion-button name="filter-outline"></ion-button>
-        </ion-buttons>
-      </ion-item>
-    </div>  
-  </div>
+    <div class="title">
+      <h2>Popular Events</h2>
 
+      <p>See all</p>
+    </div>
 
-  <div class="title">
-    <h2>Popular Events</h2>
+    <ion-button (click)="logout()" expand="block" fill="clear" shape="round">
+      Click me
+    </ion-button>
 
-    <p>See all</p>
   </div>
 
   <!-- <div class="event-slider">
