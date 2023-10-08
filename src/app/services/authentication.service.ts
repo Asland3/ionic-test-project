@@ -62,8 +62,12 @@ export class AuthenticationService {
     }
   }
 
-  logout() {
-    return signOut(this.auth);
+  async logout() {
+    try {
+      await signOut(this.auth);
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   }
 
   async googleLogin() {
