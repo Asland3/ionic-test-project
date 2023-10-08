@@ -17,7 +17,7 @@ export class IntroPage {
   swiper?: Swiper;
  
 
-  constructor(private router: Router, private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) { }
 
 
   swiperReady() {
