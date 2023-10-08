@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { INTRO_KEY } from 'src/app/guards/intro.guard';
 import Swiper from 'swiper';
 import { Preferences } from '@capacitor/preferences';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class IntroPage {
   swiper?: Swiper;
  
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private navCtrl: NavController) { }
 
 
   swiperReady() {
@@ -34,6 +35,6 @@ export class IntroPage {
 
   async start() {
     await Preferences.set({ key: INTRO_KEY, value: 'true' });
-    this.router.navigateByUrl('/', { replaceUrl: true });
+    this.navCtrl.navigateRoot('/');
   }
 }
