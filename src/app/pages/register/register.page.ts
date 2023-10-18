@@ -46,6 +46,10 @@ export class RegisterPage implements OnInit {
     return this.credentials?.get('rePassword');
   }
 
+  testMethod() {
+    console.log("This is my first test method called MalthesTest")
+  }
+
   validators() {
     this.credentials = this.fb.group(
       {
