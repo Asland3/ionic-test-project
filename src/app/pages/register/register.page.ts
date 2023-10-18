@@ -47,7 +47,7 @@ export class RegisterPage implements OnInit {
   }
 
   testMethod() {
-    console.log("This is my first test method called DenNyesteTest")
+    console.log("This is my first test method called MalthesTest")
   }
 
   validators() {
